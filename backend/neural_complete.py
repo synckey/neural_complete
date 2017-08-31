@@ -1,6 +1,5 @@
-
+from __future__ import absolute_import
 import just
-
 from encoder_decoder import TextEncoderDecoder, text_tokenize
 from model import LSTMBase
 
@@ -8,7 +7,8 @@ TRAINING_TEST_CASES = ["from keras.layers import"]
 
 
 def get_data():
-    return list(just.multi_read("data/**/*.py").values())
+    #return list(just.multi_read("data/**/*.py").values())
+    return list(just.multi_read("data/*.txt").values())
 
 
 def train(ted, model_name):
@@ -42,7 +42,7 @@ def get_model(model_name):
 
 
 def neural_complete(model, text, diversities):
-    predictions = [model.predict(text, diversity=d, max_prediction_steps=80,
+    predictions = [model.predict(text, diversity=d, max_prediction_steps=200,
                                  break_at_token="\n")
                    for d in diversities]
     # returning the latest sentence, + prediction
@@ -51,6 +51,7 @@ def neural_complete(model, text, diversities):
 
 
 if __name__ == "__main__":
+    train_char("neural_char")
     import sys
     if len(sys.argv) != 3:
         raise Exception(

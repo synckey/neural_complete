@@ -122,3 +122,11 @@ class TextEncoderDecoder(EncoderDecoder):
 
 class QuestionAnswerEncoderDecoder(EncoderDecoder):
     pass
+
+if __name__ == "__main__":
+    print(text_tokenize("import tensorflow as tf"))
+    print(str.split("import tensorflow as tf"))
+    ted = TextEncoderDecoder(["import tesorflow as tf"], tokenize=text_tokenize, untokenize="".join, padding=" ",window_step=1,
+                             min_count=1, maxlen=4)
+    print(ted.questions)
+    print(ted.answers)

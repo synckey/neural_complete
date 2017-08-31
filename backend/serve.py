@@ -28,10 +28,11 @@ def get_args(req):
 def predict():
     args = get_args(request)
     sentence = args.get("keyword", "from ")
-    model_name = args.get("model", "char")
+    model_name = args.get("model", "neural_char")
     if model_name not in models:
         models[model_name] = get_model(model_name)
-    suggestions = neural_complete(models[model_name], sentence, [0.2, 0.5, 1])
+    # suggestions = neural_complete(models[model_name], sentence, [0.2, 0.5, 1])
+    suggestions = neural_complete(models[model_name], sentence, [0.2, 0.4, 0.6, 0.8,1.0])
     return jsonify({"data": {"results": [x.strip() for x in suggestions]}})
 
 
