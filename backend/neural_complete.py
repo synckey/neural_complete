@@ -3,7 +3,7 @@ import just
 from encoder_decoder import TextEncoderDecoder, text_tokenize
 from model import LSTMBase
 
-TRAINING_TEST_CASES = ["from keras.layers import"]
+TRAINING_TEST_CASES = ["茂林陪我到关"]
 
 
 def get_data():
@@ -15,6 +15,7 @@ def train(ted, model_name):
     lb = LSTMBase(model_name, ted)
     try:
         lb.train(test_cases=TRAINING_TEST_CASES)
+        #lb.train()
     except KeyboardInterrupt:
         pass
     print("saving")
